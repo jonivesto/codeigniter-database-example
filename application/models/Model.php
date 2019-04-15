@@ -1,5 +1,5 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
-class Example extends CI_Model {
+class Model extends CI_Model {
 	
     // Select
     function select($id = NULL) {
@@ -33,5 +33,4 @@ class Example extends CI_Model {
         $insert = $this->db->insert("example_table", $data);
 		return $insert ? $this->db->insert_id() : false;
     }
-    
 }
