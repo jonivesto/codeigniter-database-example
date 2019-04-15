@@ -22,7 +22,6 @@ class Controller extends CI_Controller {
     
     // Insert
     public function insert(){
-		$data = array();	
 
 		$this->form_validation->set_rules('value', 'post value', 'required');         
 		$post = array(
@@ -38,7 +37,6 @@ class Controller extends CI_Controller {
     
     // Update
     public function update($id){
-		$data = array();
 
 		$this->form_validation->set_rules('value', 'post value', 'required');  
 
