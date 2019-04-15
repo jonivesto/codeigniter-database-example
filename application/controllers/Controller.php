@@ -6,15 +6,15 @@ class Controller extends CI_Controller {
 	function __construct() {
         parent::__construct();
 		$this->load->helper('url');
+		$this->load->helper('form');
         $this->load->model('model');
+		$this->load->library('form_validation');
     }
 	
 	public function index(){
 		$data = array();
-        
         $data['data'] = $this->model->select();
 		
-        // Refresh page
         $this->load->view('blocks/header');
         $this->load->view('view', $data);
         $this->load->view('blocks/footer');
@@ -22,12 +22,34 @@ class Controller extends CI_Controller {
     
     // Insert
     public function insert(){
+		$data = array();	
 
+		$this->form_validation->set_rules('value', 'post value', 'required');         
+		$post = array(
+			'value' => $this->input->post('value')
+		);
+
+		if($this->form_validation->run() == true){
+			$this->model->insert($post);
+		}
+        	
 		redirect('controller/index', 'refresh');
     }
     
     // Update
     public function update($id){
+		$data = array();
+
+		$this->form_validation->set_rules('value', 'post value', 'required');  
+
+		$post = array(
+			'value' => $this->input->post('value')
+		);
+		
+		if($this->form_validation->run() == true){ 
+			$this->model->update($post, $id);
+		}
+        
 		redirect('controller/index', 'refresh');
     }
     
